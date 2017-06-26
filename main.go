@@ -8,6 +8,7 @@ import (
   "github.com/Flipkart/artcli/utils"
   "github.com/Flipkart/artcli/commands/search"
 	"github.com/Flipkart/artcli/commands/create"
+	"github.com/Flipkart/artcli/prehook"
 )
 
 //go:generate go-bindata -pkg bindata -o util/bindata/bindata.go config/
@@ -23,7 +24,7 @@ func main() {
 	app.EnableBashCompletion = true
 	app.Commands = getCommands()
 	app.Before = func(c *cli.Context) error{
-		// 	prehook.Prehook()
+		 prehook.Prehook()
 	   utils.GetConfigValues()
 	   fileDescriptor = utils.SetUpLog()
 	 	 return nil
